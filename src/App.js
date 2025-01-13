@@ -7,8 +7,9 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <div>
-          <TestButton>
-          </TestButton>
+        <h1 class="text-3xl font-bold underline">test</h1>
+        <TestButton>
+        </TestButton>
       </div>
     </ThemeProvider>
   );
