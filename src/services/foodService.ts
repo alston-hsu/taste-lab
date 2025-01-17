@@ -1,11 +1,11 @@
 import axios from 'axios';
 
 const category = 'Beef';
-const BASE_URL = 'https://www.themealdb.com/api/json/v1/1/filter.php';
+const BASE_URL = 'https://www.themealdb.com/api/json/v1/1';
 
-export const getFoodByCategory = async () => {
+export const getFoodByCategory = async (selectedCategory: string) => {
     try {
-      const response = await axios.get(`${BASE_URL}?c=${category}`);
+      const response = await axios.get(`${BASE_URL}/filter.php?c=${selectedCategory}`);
       var data = response.data;
       data = data.meals;
       //console.log(data);
@@ -14,4 +14,17 @@ export const getFoodByCategory = async () => {
       console.error(`Error fetching food with ${category} as the category: `, error);
       return null;
     }
+}
+
+export const getAllFoodCategories = async () => {
+  try {
+    const response = await axios.get(`${BASE_URL}/list.php?c=list`);
+    var data = response.data;
+    data = data.meals;
+    //console.log(data);
+    return data;
+  } catch (error) {
+    console.error(`Error fetching all food categories: `, error);
+    return null;
+  }
 }

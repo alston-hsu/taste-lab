@@ -5,7 +5,8 @@ import {
   CircularProgress,
 } from '@mui/material';
 import RecipeCard from './RecipeCard';
-import { getFoodByCategory } from '../services/foodService';
+import Filter from './Filter';
+import { getFoodByCategory, getAllFoodCategories } from '../services/foodService';
 
 interface Recipe {
   idMeal: string;
@@ -15,14 +16,24 @@ interface Recipe {
 
 const RecipeContainer: React.FC = () => {
   const [recipes, setRecipes] = useState<Recipe[]>([]);
+  const [categories, setCategories] = useState<{ strCategory: string }[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
+  const [selectedCategory, setSelectedCategory] = useState<string>('Beef');
+
+  const handleCategoryClick = async (categoryClicked: string) => {
+    setSelectedCategory(categoryClicked);
+    const clickedCategoryRecipeData = await getFoodByCategory(categoryClicked);
+    setRecipes(clickedCategoryRecipeData);
+  };
 
   useEffect(() => {
     const getRecipes = async () => {
       try {
-        const recipeData = await getFoodByCategory();
+        const recipeData = await getFoodByCategory(selectedCategory);
+        const recipeCategoriesData = await getAllFoodCategories();
         setRecipes(recipeData);
-        console.log(recipes);
+        setCategories(recipeCategoriesData);
+        console.log(categories);
       } catch (error) {
         console.error("Error fetching products:", error);
       } finally {
@@ -43,6 +54,15 @@ const RecipeContainer: React.FC = () => {
 
   return (
     <Container maxWidth={false} sx={{ py: 4 }}>
+      <Box display="flex" flexWrap="wrap" justifyContent="center" sx={{ flexDirection: 'row', gap: 2 }}>
+        {categories.map((category: { strCategory: string }) => (
+          <Filter
+            key={category.strCategory}
+            strCategory={category.strCategory}
+            onClick={() => handleCategoryClick(category.strCategory)}
+          />
+        ))}
+      </Box>
       <Box display="flex" flexWrap="wrap" justifyContent="center" gap={2}>
         {recipes.map((recipe) => (
           <RecipeCard recipe={recipe} key={recipe.idMeal} />
@@ -50,4 +70,5 @@ const RecipeContainer: React.FC = () => {
       </Box>
     </Container>
   );
-};export default RecipeContainer;
+};
+export default RecipeContainer;
