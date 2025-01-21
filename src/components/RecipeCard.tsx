@@ -1,6 +1,7 @@
 import React from "react";
-import { Box, Card, CardMedia, CardContent, Typography, IconButton } from "@mui/material";
+import { Box, Card, CardMedia, CardContent, Typography, IconButton, CardActionArea } from "@mui/material";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import { Link } from 'react-router-dom';
 
 interface Recipe {
   idMeal: string;
@@ -15,23 +16,25 @@ interface RecipeCardProps {
 const RecipeCard: React.FC<RecipeCardProps> = ({ recipe }) => {
   return (
     <Card sx={{ maxWidth: 300, m: 2 }}>
-      <CardMedia
-        component="img"
-        height="140"
-        image={recipe.strMealThumb}
-        alt={recipe.strMeal}
-        sx={{ '&:hover': { transform: 'scale(1.05)', transition: '0.3s' } }}
-      />
-      <CardContent>
-        <Box display="flex" justifyContent="space-between" alignItems="center">
-          <Typography variant="h6" component="div">
-            {recipe.strMeal}
-          </Typography>
-          <IconButton>
-            <FavoriteBorderIcon color="action" />
-          </IconButton>
-        </Box>
-      </CardContent>
+      <CardActionArea component={Link} to={`/recipe/${recipe.idMeal}`}>
+        <CardMedia
+          component="img"
+          height="140"
+          image={recipe.strMealThumb}
+          alt={recipe.strMeal}
+          sx={{ '&:hover': { transform: 'scale(1.05)', transition: '0.3s' } }}
+        />
+        <CardContent>
+          <Box display="flex" justifyContent="space-between" alignItems="center">
+            <Typography variant="h6" component="div">
+              {recipe.strMeal}
+            </Typography>
+            <IconButton>
+              <FavoriteBorderIcon color="action" />
+            </IconButton>
+          </Box>
+        </CardContent>
+      </CardActionArea>
     </Card>
   );
 };

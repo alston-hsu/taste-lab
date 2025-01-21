@@ -28,3 +28,16 @@ export const getAllFoodCategories = async () => {
     return null;
   }
 }
+
+export const getRecipeByID = async (selectedRecipeID: string) => {
+  try {
+    const response = await axios.get(`${BASE_URL}/lookup.php?i=${selectedRecipeID}`);
+    var data = response.data;
+    data = data.meals[0];
+    //console.log(data);
+    return data;
+  } catch (error) {
+    console.error(`Error fetching recipe ${selectedRecipeID}: `, error);
+    return null;
+  }
+}

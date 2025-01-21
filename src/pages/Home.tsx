@@ -44,29 +44,29 @@ const Home = () => {
   }
 
   return (
-    <>
-    <Navbar />
-    <Container maxWidth={false} sx={{ py: 4 }}>
-      <Box
-        display="flex"
-        flexWrap="wrap"
-        justifyContent="center"
-        sx={{ flexDirection: "row", gap: 2 }}
-      >
-        {categories.map((category: { strCategory: string; }) => (
-          <Filter
-            key={category.strCategory}
-            strCategory={category.strCategory}
-            onClick={() => handleCategoryClick(category.strCategory)} />
-        ))}
-      </Box>
-      <Box display="flex" flexWrap="wrap" justifyContent="center" gap={2}>
-        {recipes.map((recipe) => (
-          <RecipeCard recipe={recipe} key={recipe.idMeal} />
-        ))}
-      </Box>
-    </Container>
-    </>
+    <Box>
+      <Navbar />
+      <Container maxWidth={false} sx={{ py: 4 }}>
+        <Box
+          display="flex"
+          flexWrap="wrap"
+          justifyContent="center"
+          sx={{ flexDirection: "row", gap: 2 }}
+        >
+          {categories.map((category: { strCategory: string; }) => (
+            <Filter
+              key={category.strCategory}
+              strCategory={category.strCategory}
+              onClick={() => handleCategoryClick(category.strCategory)} />
+          ))}
+        </Box>
+        <Box display="flex" flexWrap="wrap" justifyContent="center" gap={2}>
+          {recipes.map((recipe) => (
+            <RecipeCard recipe={recipe} key={recipe.idMeal} />
+          ))}
+        </Box>
+      </Container>
+    </Box>
   );
 };
 export default Home;
