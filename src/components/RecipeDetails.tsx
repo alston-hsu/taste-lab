@@ -52,7 +52,7 @@ const RecipeDetails: React.FC<RecipeDetailsCardProps> = ({ recipe }) => {
   const space = " ";
 
   return (
-    <Card sx={{ maxWidth: 800, m: 2, mx: 'auto' }}>
+    <Card sx={{ maxWidth: 1200, m: 2, mx: 'auto' }}>
       <Grid container spacing={2}>
         <Grid item xs={12} md={6}>
           <CardMedia

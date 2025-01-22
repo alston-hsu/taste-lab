@@ -7,10 +7,18 @@ interface Recipe {
   idMeal: string;
   strMeal: string;
   strMealThumb: string;
+  onClick?: () => void;
 }
 
 interface RecipeCardProps {
   recipe: Recipe;
+}
+
+const recipesList: Recipe[] = [];
+
+const handleClick = (recipe: Recipe) => {
+  recipesList.push(recipe);
+  localStorage.setItem('savedRecipes', JSON.stringify(recipesList));
 }
 
 const RecipeCard: React.FC<RecipeCardProps> = ({ recipe }) => {
@@ -24,18 +32,20 @@ const RecipeCard: React.FC<RecipeCardProps> = ({ recipe }) => {
           alt={recipe.strMeal}
           sx={{ '&:hover': { transform: 'scale(1.05)', transition: '0.3s' } }}
         />
+      </CardActionArea>  
         <CardContent>
           <Box display="flex" justifyContent="space-between" alignItems="center">
             <Typography variant="h6" component="div">
               {recipe.strMeal}
             </Typography>
-            <IconButton>
+            <IconButton
+              onClick={() => handleClick(recipe)}
+            >
               <FavoriteBorderIcon color="action" />
             </IconButton>
           </Box>
         </CardContent>
-      </CardActionArea>
+      
     </Card>
   );
-};
-export default RecipeCard;
+};export default RecipeCard;
