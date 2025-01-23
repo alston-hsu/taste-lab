@@ -12,6 +12,12 @@ interface SavedRecipe {
 const RecipeBook = () => {
   const [savedRecipes, setSavedRecipes] = useState<SavedRecipe[]>([]);
 
+  const handleDeleteClick = (recipeId: string) => {
+    const updatedRecipes = savedRecipes.filter((recipe) => recipe.idMeal !== recipeId);
+    setSavedRecipes(updatedRecipes);
+    localStorage.setItem('savedRecipes', JSON.stringify(updatedRecipes));
+  };
+
   useEffect(() => {
     const savedRecipesFromLocalStorage = localStorage.getItem('savedRecipes');
     console.log(savedRecipesFromLocalStorage);
@@ -37,7 +43,7 @@ const RecipeBook = () => {
             <Grid container spacing={3}>
               {savedRecipes.map((recipe) => (
                 <Grid item xs={12} sm={6} md={4} key={recipe.idMeal}>
-                  <RecipeCard recipe={recipe} />
+                  <RecipeCard recipe={recipe} onClick={() => {handleDeleteClick(recipe.idMeal)}} />
                 </Grid>
               ))}
             </Grid>

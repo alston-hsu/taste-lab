@@ -11,12 +11,21 @@ const Home = () => {
   const [categories, setCategories] = useState<{ strCategory: string }[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [selectedCategory, setSelectedCategory] = useState<string>('Beef');
+  const [savedRecipes, setSavedRecipes] = useState<Recipe[]>([]);
 
   const handleCategoryClick = async (categoryClicked: string) => {
     setSelectedCategory(categoryClicked);
     const clickedCategoryRecipeData = await getFoodByCategory(categoryClicked);
     setRecipes(clickedCategoryRecipeData);
   };
+
+  const handleSaveClick = (recipe: Recipe) => {
+    const updatedSavedRecipes = [...savedRecipes, recipe];
+    setSavedRecipes(updatedSavedRecipes);
+    localStorage.setItem('savedRecipes', JSON.stringify(updatedSavedRecipes));
+    console.log(updatedSavedRecipes);
+    console.log(localStorage.getItem('savedRecipes'));
+  }
 
   useEffect(() => {
     const getRecipes = async () => {
@@ -31,8 +40,10 @@ const Home = () => {
         setLoading(false);
       }
     };
+    const savedRecipesFromLocalStorage = localStorage.getItem('savedRecipes');
 
     getRecipes();
+    savedRecipesFromLocalStorage;
   }, []);
 
   if (loading) {
@@ -62,7 +73,7 @@ const Home = () => {
         </Box>
         <Box display="flex" flexWrap="wrap" justifyContent="center" gap={2}>
           {recipes.map((recipe) => (
-            <RecipeCard recipe={recipe} key={recipe.idMeal} />
+            <RecipeCard recipe={recipe} key={recipe.idMeal} onClick={() => handleSaveClick(recipe)} />
           ))}
         </Box>
       </Container>
