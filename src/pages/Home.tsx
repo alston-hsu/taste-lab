@@ -74,6 +74,7 @@ const Home = () => {
             <Filter
               key={category.strCategory}
               strCategory={category.strCategory}
+              isActive={selectedCategory === category.strCategory}
               onClick={() => handleCategoryClick(category.strCategory)} />
           ))}
         </Box>
