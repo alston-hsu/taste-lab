@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, ChangeEvent } from 'react';
 import { Box, Container, CircularProgress } from '@mui/material';
 import RecipeCard from '../components/RecipeCard';
 import Filter from '../components/Filter';
@@ -12,6 +12,7 @@ const Home = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [selectedCategory, setSelectedCategory] = useState<string>('Beef');
   const [savedRecipes, setSavedRecipes] = useState<Recipe[]>([]);
+  const savedRecipesFromLocalStorage = localStorage.getItem('savedRecipes');
 
   const handleCategoryClick = async (categoryClicked: string) => {
     setSelectedCategory(categoryClicked);
@@ -20,6 +21,7 @@ const Home = () => {
   };
 
   const handleSaveClick = (recipe: Recipe) => {
+    console.log(savedRecipes);
     const updatedSavedRecipes = [...savedRecipes, recipe];
     setSavedRecipes(updatedSavedRecipes);
     localStorage.setItem('savedRecipes', JSON.stringify(updatedSavedRecipes));
@@ -40,10 +42,14 @@ const Home = () => {
         setLoading(false);
       }
     };
-    const savedRecipesFromLocalStorage = localStorage.getItem('savedRecipes');
+    const getSavedRecipes = () => {
+      if (savedRecipesFromLocalStorage) {
+        setSavedRecipes(JSON.parse(savedRecipesFromLocalStorage));
+      }
+    }
 
     getRecipes();
-    savedRecipesFromLocalStorage;
+    getSavedRecipes();
   }, []);
 
   if (loading) {

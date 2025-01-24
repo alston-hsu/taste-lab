@@ -37,7 +37,7 @@ const RecipeBook = () => {
           
           {savedRecipes.length === 0 ? (
             <Typography variant="body1" color="text.secondary">
-              No saved recipes yet. Start exploring and save your favorites!
+              No saved recipes yet. Add some recipes to your recipe book!
             </Typography>
           ) : (
             <Grid container spacing={3}>
