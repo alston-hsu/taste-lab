@@ -16,7 +16,7 @@ const Filter: React.FC<FilterProps> = ({ strCategory, onClick, isActive }) => {
       sx={{
         backgroundColor: isActive ? 'black' : 'transparent',
         color: isActive ? 'white' : 'black',
-        border: '1px solid black',
+        border: '1px solid black'
       }}
     />
   );

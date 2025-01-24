@@ -68,7 +68,7 @@ const Home = () => {
           display="flex"
           flexWrap="wrap"
           justifyContent="center"
-          sx={{ flexDirection: "row", gap: 2 }}
+          sx={{ flexDirection: "row", gap: 3 }}
         >
           {categories.map((category: { strCategory: string; }) => (
             <Filter
@@ -78,7 +78,7 @@ const Home = () => {
               onClick={() => handleCategoryClick(category.strCategory)} />
           ))}
         </Box>
-        <Box display="flex" flexWrap="wrap" justifyContent="center" gap={2}>
+        <Box display="flex" flexWrap="wrap" justifyContent="center" gap={2} sx={{ mt: 2 }}>
           {recipes.map((recipe) => (
             <RecipeCard recipe={recipe} key={recipe.idMeal} onClick={() => handleSaveClick(recipe)} />
           ))}
