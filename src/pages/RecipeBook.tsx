@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Grid, Typography, Container, Box } from '@mui/material';
+import { Grid, Typography, Container, Box, TextField } from '@mui/material';
 import RecipeCard from '../components/RecipeCard';
 import Navbar from '../components/Navbar';
 
@@ -36,7 +36,7 @@ const RecipeBook = () => {
           </Typography>
           
           {savedRecipes.length === 0 ? (
-            <Typography variant="body1" color="text.secondary">
+            <Typography variant="body1" color="black">
               No saved recipes yet. Add some recipes to your recipe book!
             </Typography>
           ) : (

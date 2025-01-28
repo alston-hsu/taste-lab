@@ -21,12 +21,14 @@ const Home = () => {
   };
 
   const handleSaveClick = (recipe: Recipe) => {
-    console.log(savedRecipes);
-    const updatedSavedRecipes = [...savedRecipes, recipe];
-    setSavedRecipes(updatedSavedRecipes);
-    localStorage.setItem('savedRecipes', JSON.stringify(updatedSavedRecipes));
-    console.log(updatedSavedRecipes);
-    console.log(localStorage.getItem('savedRecipes'));
+    console.log(localStorage.getItem(recipe.idMeal));
+    if (savedRecipes.find((savedRecipe: Recipe) => savedRecipe.idMeal === recipe.idMeal)) {
+      alert('Recipe already saved!');
+    } else {
+      const updatedSavedRecipes = [...savedRecipes, recipe];
+      setSavedRecipes(updatedSavedRecipes);
+      localStorage.setItem('savedRecipes', JSON.stringify(updatedSavedRecipes));
+    }
   }
 
   useEffect(() => {
