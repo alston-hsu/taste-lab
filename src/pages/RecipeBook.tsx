@@ -14,6 +14,7 @@ const RecipeBook = () => {
   const [savedRecipes, setSavedRecipes] = useState<SavedRecipe[]>([]);
   const [showNotification, setShowNotification] = useState(false);
   const [notificationMessage, setNotificationMessage] = useState('');
+  const savedRecipesFromLocalStorage = localStorage.getItem('savedRecipes');
 
   const handleDeleteClick = (recipeId: string) => {
     const updatedRecipes = savedRecipes.filter((recipe) => recipe.idMeal !== recipeId);
@@ -28,8 +29,6 @@ const RecipeBook = () => {
   };
 
   useEffect(() => {
-    const savedRecipesFromLocalStorage = localStorage.getItem('savedRecipes');
-    console.log(savedRecipesFromLocalStorage);
     if (savedRecipesFromLocalStorage) {
       setSavedRecipes(JSON.parse(savedRecipesFromLocalStorage));
     }

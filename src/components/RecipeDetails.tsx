@@ -27,9 +27,10 @@ interface Recipe {
 
 interface RecipeDetailsCardProps {
   recipe: Recipe;
+  onClick: () => void;
 }
 
-const RecipeDetails: React.FC<RecipeDetailsCardProps> = ({ recipe }) => {
+const RecipeDetails: React.FC<RecipeDetailsCardProps> = ({ recipe, onClick }) => {
   const getIngredientsWithMeasures = (recipe: any) => {
     const ingredients = [];
     
@@ -69,7 +70,9 @@ const RecipeDetails: React.FC<RecipeDetailsCardProps> = ({ recipe }) => {
               <Typography variant="h4" component="div">
                 {recipe.strMeal}
               </Typography>
-              <IconButton>
+              <IconButton
+                onClick={onClick}
+              >
                 <FavoriteBorderIcon color="action" />
               </IconButton>
             </Box>
