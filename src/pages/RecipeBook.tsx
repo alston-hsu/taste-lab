@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Grid, Typography, Container, Box, TextField } from '@mui/material';
 import RecipeCard from '../components/RecipeCard';
 import Navbar from '../components/Navbar';
+import RecipeNotification from '../components/RecipeNotification';
 
 interface SavedRecipe {
   idMeal: string;
@@ -11,11 +12,19 @@ interface SavedRecipe {
 
 const RecipeBook = () => {
   const [savedRecipes, setSavedRecipes] = useState<SavedRecipe[]>([]);
+  const [showNotification, setShowNotification] = useState(false);
+  const [notificationMessage, setNotificationMessage] = useState('');
 
   const handleDeleteClick = (recipeId: string) => {
     const updatedRecipes = savedRecipes.filter((recipe) => recipe.idMeal !== recipeId);
     setSavedRecipes(updatedRecipes);
     localStorage.setItem('savedRecipes', JSON.stringify(updatedRecipes));
+    setNotificationMessage('Recipe deleted!');
+    setShowNotification(prevShowNotification => !prevShowNotification);
+  };
+
+  const handleCloseNotification = () => {
+    setShowNotification(false);
   };
 
   useEffect(() => {
@@ -29,6 +38,11 @@ const RecipeBook = () => {
   return (
     <Box>
       <Navbar />
+      <RecipeNotification
+        message={notificationMessage}
+        open={showNotification}
+        onClose={handleCloseNotification}
+      />
       <Container maxWidth="lg">
         <Box py={4}>
           <Typography variant="h4" component="h1" gutterBottom>
