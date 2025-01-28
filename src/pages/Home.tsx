@@ -5,6 +5,7 @@ import Filter from '../components/Filter';
 import { getFoodByCategory, getAllFoodCategories } from '../services/foodService';
 import { Recipe } from '../types/Recipe';
 import Navbar from '../components/Navbar';
+import RecipeNotification from '../components/RecipeNotification';
 
 const Home = () => {
   const [recipes, setRecipes] = useState<Recipe[]>([]);
@@ -13,6 +14,8 @@ const Home = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>('Beef');
   const [savedRecipes, setSavedRecipes] = useState<Recipe[]>([]);
   const savedRecipesFromLocalStorage = localStorage.getItem('savedRecipes');
+  const [showNotification, setShowNotification] = useState(false);
+  const [notificationMessage, setNotificationMessage] = useState('');
 
   const handleCategoryClick = async (categoryClicked: string) => {
     setSelectedCategory(categoryClicked);
@@ -23,13 +26,20 @@ const Home = () => {
   const handleSaveClick = (recipe: Recipe) => {
     console.log(localStorage.getItem(recipe.idMeal));
     if (savedRecipes.find((savedRecipe: Recipe) => savedRecipe.idMeal === recipe.idMeal)) {
-      alert('Recipe already saved!');
+      setNotificationMessage('Recipe already saved!');
+      setShowNotification(prevShowNotification => !prevShowNotification);
     } else {
       const updatedSavedRecipes = [...savedRecipes, recipe];
       setSavedRecipes(updatedSavedRecipes);
       localStorage.setItem('savedRecipes', JSON.stringify(updatedSavedRecipes));
+      setNotificationMessage('Recipe saved!');
+      setShowNotification(prevShowNotification => !prevShowNotification);
     }
   }
+
+  const handleCloseNotification = () => {
+    setShowNotification(false);
+  };
 
   useEffect(() => {
     const getRecipes = async () => {
@@ -65,6 +75,11 @@ const Home = () => {
   return (
     <Box>
       <Navbar />
+      <RecipeNotification 
+        open={showNotification}
+        message={notificationMessage}
+        onClose={handleCloseNotification}
+      />
       <Container maxWidth={false} sx={{ py: 4 }}>
         <Box
           display="flex"
