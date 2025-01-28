@@ -15,16 +15,6 @@ const pages = ['Recipe Book'];
 
 function NavBar() {
   let navigate = useNavigate();
-  const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
-
-  const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorElNav(event.currentTarget);
-  };
-
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
-  };
-
   const routeToRecipeBook = () => {
     navigate('/recipe-book');
   };
@@ -49,37 +39,6 @@ function NavBar() {
           >
             Taste Lab
           </Typography>
-
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-            <IconButton
-              size="large"
-              onClick={handleOpenNavMenu}
-              color="inherit"
-            >
-              <MenuIcon />
-            </IconButton>
-            <Menu
-              anchorEl={anchorElNav}
-              anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'left',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'left',
-              }}
-              open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
-              sx={{ display: { xs: 'block', md: 'none' } }}
-            >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography sx={{ textAlign: 'center' }}>{page}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
-          </Box>
         
           <Typography
             variant="h5"
@@ -98,7 +57,7 @@ function NavBar() {
           >
             Taste Lab
           </Typography>
-          <Box sx={{ flexGrow: 1, display: { md: 'flex' }, justifyContent: 'flex-end' }}>
+          <Box sx={{ flexGrow: 1, display: 'flex', justifyContent: 'flex-end' }}>
             {pages.map((page) => (
               <Button
                 key={page}

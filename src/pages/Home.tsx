@@ -58,7 +58,7 @@ const Home = () => {
       if (savedRecipesFromLocalStorage) {
         setSavedRecipes(JSON.parse(savedRecipesFromLocalStorage));
       }
-    }
+    };
 
     getRecipes();
     getSavedRecipes();
@@ -70,38 +70,38 @@ const Home = () => {
         <CircularProgress />
       </Box>
     );
-  }
-
-  return (
-    <Box>
-      <Navbar />
-      <RecipeNotification 
-        open={showNotification}
-        message={notificationMessage}
-        onClose={handleCloseNotification}
-      />
-      <Container maxWidth={false} sx={{ py: 4 }}>
-        <Box
-          display="flex"
-          flexWrap="wrap"
-          justifyContent="center"
-          sx={{ flexDirection: "row", gap: 3 }}
-        >
-          {categories.map((category: { strCategory: string; }) => (
-            <Filter
-              key={category.strCategory}
-              strCategory={category.strCategory}
-              isActive={selectedCategory === category.strCategory}
-              onClick={() => handleCategoryClick(category.strCategory)} />
-          ))}
-        </Box>
-        <Box display="flex" flexWrap="wrap" justifyContent="center" gap={2} sx={{ mt: 2 }}>
-          {recipes.map((recipe) => (
-            <RecipeCard recipe={recipe} key={recipe.idMeal} onClick={() => handleSaveClick(recipe)} />
-          ))}
-        </Box>
-      </Container>
-    </Box>
-  );
+  } else {
+    return (
+      <Box>
+        <Navbar />
+        <RecipeNotification 
+          open={showNotification}
+          message={notificationMessage}
+          onClose={handleCloseNotification}
+        />
+        <Container maxWidth={false} sx={{ py: 4 }}>
+          <Box
+            display="flex"
+            flexWrap="wrap"
+            justifyContent="center"
+            sx={{ flexDirection: "row", gap: 3 }}
+          >
+            {categories.map((category: { strCategory: string; }) => (
+              <Filter
+                key={category.strCategory}
+                strCategory={category.strCategory}
+                isActive={selectedCategory === category.strCategory}
+                onClick={() => handleCategoryClick(category.strCategory)} />
+            ))}
+          </Box>
+          <Box display="flex" flexWrap="wrap" justifyContent="center" gap={2} sx={{ mt: 2 }}>
+            {recipes.map((recipe) => (
+              <RecipeCard recipe={recipe} key={recipe.idMeal} onClick={() => handleSaveClick(recipe)} />
+            ))}
+          </Box>
+        </Container>
+      </Box>
+   );
+  } 
 };
 export default Home;
