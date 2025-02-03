@@ -4,14 +4,8 @@ import RecipeCard from '../components/RecipeCard';
 import Navbar from '../components/Navbar';
 import RecipeNotification from '../components/RecipeNotification';
 
-interface SavedRecipe {
-  idMeal: string;
-  strMeal: string;
-  strMealThumb: string;
-}
-
 const RecipeBook = () => {
-  const [savedRecipes, setSavedRecipes] = useState<SavedRecipe[]>([]);
+  const [savedRecipes, setSavedRecipes] = useState<any[]>([]);
   const [showNotification, setShowNotification] = useState(false);
   const [notificationMessage, setNotificationMessage] = useState('');
   const savedRecipesFromLocalStorage = localStorage.getItem('savedRecipes');
@@ -21,7 +15,7 @@ const RecipeBook = () => {
     setSavedRecipes(updatedRecipes);
     localStorage.setItem('savedRecipes', JSON.stringify(updatedRecipes));
     setNotificationMessage('Recipe deleted!');
-    setShowNotification(prevShowNotification => !prevShowNotification);
+    setShowNotification(!showNotification);
   };
 
   const handleCloseNotification = () => {

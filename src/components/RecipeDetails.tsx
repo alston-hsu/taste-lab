@@ -31,7 +31,7 @@ interface RecipeDetailsCardProps {
 }
 
 const RecipeDetails: React.FC<RecipeDetailsCardProps> = ({ recipe, onClick }) => {
-  const getIngredientsWithMeasures = (recipe: any) => {
+  const getIngredientsWithMeasurements = (recipe: any) => {
     const ingredients = [];
     
     for (let i = 1; i <= 20; i++) {
@@ -49,7 +49,7 @@ const RecipeDetails: React.FC<RecipeDetailsCardProps> = ({ recipe, onClick }) =>
     return ingredients;
   };
 
-  const ingredientsList = getIngredientsWithMeasures(recipe);
+  const ingredientsList = getIngredientsWithMeasurements(recipe);
   const space = " ";
 
   return (
@@ -91,7 +91,7 @@ const RecipeDetails: React.FC<RecipeDetailsCardProps> = ({ recipe, onClick }) =>
               Ingredients
             </Typography>
             <Typography variant="body1" color="text.secondary" paragraph>
-              {ingredientsList.map((ingredient, measurement, index) => (
+              {ingredientsList.map((ingredient, index) => (
                 <div key={index}>{ingredient.measurement}{space}{ingredient.name}</div>
               ))}
             </Typography>

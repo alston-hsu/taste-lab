@@ -41,4 +41,5 @@ const RecipeCard: React.FC<RecipeCardProps> = ({ recipe, onClick }) => {
       
     </Card>
   );
-};export default RecipeCard;
+};
+export default RecipeCard;
