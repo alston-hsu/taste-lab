@@ -6,11 +6,11 @@ import {
   CardContent, 
   Typography, 
   IconButton,
-  Grid,
   Chip,
   Divider 
 } from "@mui/material";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import Grid from '@mui/material/Grid2';
 
 interface Recipe {
   idMeal: string;
@@ -55,7 +55,7 @@ const RecipeDetails: React.FC<RecipeDetailsCardProps> = ({ recipe, onClick }) =>
   return (
     <Card sx={{ maxWidth: 1200, m: 2, mx: 'auto' }}>
       <Grid container spacing={2}>
-        <Grid item xs={12} md={6}>
+        <Grid size={{ xs: 12, md: 6 }}>
           <CardMedia
             component="img"
             height="400"
@@ -64,7 +64,7 @@ const RecipeDetails: React.FC<RecipeDetailsCardProps> = ({ recipe, onClick }) =>
             sx={{ objectFit: 'cover' }}
           />
         </Grid>
-        <Grid item xs={12} md={6}>
+        <Grid size={{ xs: 12, md: 6 }}>
           <CardContent>
             <Box display="flex" justifyContent="space-between" alignItems="center" mb={2}>
               <Typography variant="h4" component="div">

@@ -1,4 +1,4 @@
-import { Box, Container } from '@mui/material';
+import { Box } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import Navbar from '../components/Navbar';
 import { getRecipeByID } from '../services/foodService';

@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { Grid, Typography, Container, Box, TextField } from '@mui/material';
+import { Typography, Container, Box, TextField } from '@mui/material';
 import RecipeCard from '../components/RecipeCard';
 import Navbar from '../components/Navbar';
 import RecipeNotification from '../components/RecipeNotification';
+import Grid from '@mui/material/Grid2';
 
 const RecipeBook = () => {
   const [savedRecipes, setSavedRecipes] = useState<any[]>([]);
@@ -36,9 +37,9 @@ const RecipeBook = () => {
         open={showNotification}
         onClose={handleCloseNotification}
       />
-      <Container maxWidth="lg">
+      <Container maxWidth="xl">
         <Box py={4}>
-          <Typography variant="h4" component="h1" gutterBottom>
+          <Typography pl={2} variant="h4" component="h1" gutterBottom>
             My Recipe Book
           </Typography>
           
@@ -49,7 +50,9 @@ const RecipeBook = () => {
           ) : (
             <Grid container spacing={3}>
               {savedRecipes.map((recipe) => (
-                <Grid item xs={12} sm={6} md={4} key={recipe.idMeal}>
+                <Grid 
+                  size={{ xs: 12, sm: 6, md: 4, lg: 3 }}  
+                  key={recipe.idMeal}>
                   <RecipeCard recipe={recipe} onClick={() => {handleDeleteClick(recipe.idMeal)}} />
                 </Grid>
               ))}

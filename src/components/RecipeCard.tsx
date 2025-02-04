@@ -16,7 +16,7 @@ interface RecipeCardProps {
 
 const RecipeCard: React.FC<RecipeCardProps> = ({ recipe, onClick }) => {
   return (
-    <Card sx={{ maxWidth: 300, m: 2 }}>
+    <Card sx={{ width: '100%', maxWidth: 300, height: 300, m: 2 }}>
       <CardActionArea component={Link} to={`/recipe/${recipe.idMeal}`}>
         <CardMedia
           component="img"
