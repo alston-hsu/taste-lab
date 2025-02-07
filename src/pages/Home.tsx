@@ -1,20 +1,19 @@
 import React, { useState, useEffect, ChangeEvent } from 'react';
+import { Routes, Route } from 'react-router-dom';
 import { Box, Container, CircularProgress } from '@mui/material';
 import RecipeCard from '../components/RecipeCard';
 import Filter from '../components/Filter';
 import { getFoodByCategory, getAllFoodCategories } from '../services/foodService';
-import { Recipe } from '../types/Recipe';
 import Navbar from '../components/Navbar';
 import RecipeNotification from '../components/RecipeNotification';
 import Grid from '@mui/material/Grid2';
 
-
 const Home = () => {
-  const [recipes, setRecipes] = useState<Recipe[]>([]);
+  const [recipes, setRecipes] = useState<any[]>([]);
   const [categories, setCategories] = useState<{ strCategory: string }[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [selectedCategory, setSelectedCategory] = useState<string>("Beef");
-  const [savedRecipes, setSavedRecipes] = useState<Recipe[]>([]);
+  const [savedRecipes, setSavedRecipes] = useState<any[]>([]);
   const savedRecipesFromLocalStorage = localStorage.getItem("savedRecipes");
   const [showNotification, setShowNotification] = useState(false);
   const [notificationMessage, setNotificationMessage] = useState("");
@@ -25,11 +24,11 @@ const Home = () => {
     setRecipes(clickedCategoryRecipeData);
   };
 
-  const handleSaveClick = (recipe: Recipe) => {
+  const handleSaveClick = (recipe: any) => {
     console.log(localStorage.getItem(recipe.idMeal));
     if (
       savedRecipes.find(
-        (savedRecipe: Recipe) => savedRecipe.idMeal === recipe.idMeal
+        (savedRecipe: any) => savedRecipe.idMeal === recipe.idMeal
       )
     ) {
       setNotificationMessage("Recipe already saved!");
@@ -84,7 +83,6 @@ const Home = () => {
   } else {
     return (
       <Box>
-        <Navbar />
         <RecipeNotification
           open={showNotification}
           message={notificationMessage}
@@ -110,7 +108,7 @@ const Home = () => {
               </Box>
             </Grid>
             {recipes.map((recipe) => (
-              <Grid 
+              <Grid
                 size={{ xs: 12, sm: 6, md: 4, lg: 3 }}
                 key={recipe.idMeal}
                 sx={{
@@ -129,5 +127,5 @@ const Home = () => {
       </Box>
     );
   }
-};
+}
 export default Home;

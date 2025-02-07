@@ -38,8 +38,7 @@ const RecipeCard: React.FC<RecipeCardProps> = ({ recipe, onClick }) => {
             </IconButton>
           </Box>
         </CardContent>
-      
     </Card>
   );
-};
+}
 export default RecipeCard;

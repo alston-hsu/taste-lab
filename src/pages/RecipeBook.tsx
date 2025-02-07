@@ -31,7 +31,6 @@ const RecipeBook = () => {
 
   return (
     <Box>
-      <Navbar />
       <RecipeNotification
         message={notificationMessage}
         open={showNotification}
@@ -62,5 +61,5 @@ const RecipeBook = () => {
       </Container>
     </Box>
   );
-};
+}
 export default RecipeBook;

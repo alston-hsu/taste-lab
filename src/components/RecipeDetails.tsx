@@ -50,7 +50,6 @@ const RecipeDetails: React.FC<RecipeDetailsCardProps> = ({ recipe, onClick }) =>
   };
 
   const ingredientsList = getIngredientsWithMeasurements(recipe);
-  const space = " ";
 
   return (
     <Card sx={{ maxWidth: 1200, m: 2, mx: 'auto' }}>
@@ -92,7 +91,7 @@ const RecipeDetails: React.FC<RecipeDetailsCardProps> = ({ recipe, onClick }) =>
             </Typography>
             <Typography variant="body1" color="text.secondary" paragraph>
               {ingredientsList.map((ingredient, index) => (
-                <div key={index}>{ingredient.measurement}{space}{ingredient.name}</div>
+                <div key={index}>{ingredient.measurement} {ingredient.name}</div>
               ))}
             </Typography>
 
@@ -124,7 +123,6 @@ const RecipeDetails: React.FC<RecipeDetailsCardProps> = ({ recipe, onClick }) =>
       </Grid>
     </Card>
   );
-
-};
+}
 
 export default RecipeDetails;

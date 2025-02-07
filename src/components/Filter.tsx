@@ -28,5 +28,5 @@ const Filter: React.FC<FilterProps> = ({ strCategory, onClick, isActive }) => {
       }}
     />
   );
-};
+}
 export default Filter;

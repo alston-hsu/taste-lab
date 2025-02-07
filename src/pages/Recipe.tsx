@@ -42,7 +42,6 @@ const Recipe: React.FC = () => {
 
   return (
     <Box>
-      <Navbar />
       <RecipeNotification
         open={showNotification}
         onClose={handleCloseNotification}
@@ -54,5 +53,5 @@ const Recipe: React.FC = () => {
       />
     </Box>
   );
-};
+}
 export default Recipe;

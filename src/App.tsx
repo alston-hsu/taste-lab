@@ -4,19 +4,19 @@ import Home from './pages/Home';
 import Recipe from './pages/Recipe';
 import RecipeBook from './pages/RecipeBook';
 import Navbar from './components/Navbar';
-import { getFoodByCategory } from './services/foodService';
-import { ThemeProvider, createTheme, Theme } from '@mui/material/styles';
-import { Container } from '@mui/material';
-import RecipeContainer from './components/RecipeContainer';
+import { Box } from '@mui/material';
 
 function App() {
   return (
     <Router>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/recipe/:recipeID" element={<Recipe />} />
-        <Route path="/recipe-book" element={<RecipeBook />} />
-      </Routes>
+      <Box>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/recipe/:recipeID" element={<Recipe />} />
+          <Route path="/recipe-book" element={<RecipeBook />} />
+        </Routes>
+      </Box>
     </Router>
   );
 }
