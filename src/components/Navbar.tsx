@@ -19,7 +19,7 @@ function NavBar() {
     <AppBar position="static"
       sx={{
         background: 'rgb(0,0,128)',
-        boxShadow: '0 3px 5px 2px black, .3)'
+        boxShadow: '0 3px 5px 2px black, .3'
       }}
     >
       <Container maxWidth="xl">

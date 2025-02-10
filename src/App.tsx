@@ -5,6 +5,7 @@ import Recipe from './pages/Recipe';
 import RecipeBook from './pages/RecipeBook';
 import Navbar from './components/Navbar';
 import { Box } from '@mui/material';
+import Footer from './components/Footer';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="/recipe/:recipeID" element={<Recipe />} />
           <Route path="/recipe-book" element={<RecipeBook />} />
         </Routes>
+        <Footer />
       </Box>
     </Router>
   );
